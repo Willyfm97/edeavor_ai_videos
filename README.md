@@ -1,6 +1,6 @@
 # Endeavor · Formulario de solicitud de videos
 
-Formulario de intake que se conecta al workflow de n8n para el agente generador de videos.
+Formulario  de intake que se conecta al workflow de n8n para el agente generador de videos.
 
 ## Archivos
 
