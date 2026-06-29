@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Endeavor · Solicitud de video</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span class="logo-text">Endeavor <span class="logo-divider">·</span> Generador de Videos</span>
+      </div>
+      <span class="header-badge">Beta</span>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="form-wrap">
+
+      <!-- Page header -->
+      <div class="page-header">
+        <p class="page-eyebrow">Agente de IA</p>
+        <h1 class="page-title">Solicitá un video de contenido</h1>
+        <p class="page-sub">Claude analizará tu documento, generará el script y te lo enviará para aprobar antes de producir el video.</p>
+      </div>
+
+      <!-- FORM -->
+      <form id="video-form" novalidate>
+
+        <!-- ── SECCIÓN 1: SOLICITANTE ── -->
+        <div class="form-card">
+          <div class="card-section">
+            <div class="section-label">
+              <span>Datos del solicitante</span>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="nombre">Nombre completo <span class="req">*</span></label>
+                <input type="text" id="nombre" name="nombre" placeholder="ej. María García" autocomplete="name" />
+                <span class="field-error" id="err-nombre"></span>
+              </div>
+              <div class="field">
+                <label for="email">Email Endeavor <span class="req">*</span></label>
+                <input type="email" id="email" name="email" placeholder="nombre@endeavor.org" autocomplete="email" />
+                <span class="field-error" id="err-email"></span>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="oficina">Oficina Endeavor <span class="req">*</span></label>
+                <select id="oficina" name="oficina">
+                  <option value="">Seleccioná tu oficina</option>
+                  <option value="argentina">Argentina</option>
+                  <option value="brasil">Brasil</option>
+                  <option value="chile">Chile</option>
+                  <option value="colombia">Colombia</option>
+                  <option value="mexico">México</option>
+                  <option value="peru">Perú</option>
+                  <option value="uruguay">Uruguay</option>
+                  <option value="global">Global</option>
+                </select>
+                <span class="field-error" id="err-oficina"></span>
+              </div>
+              <div class="field">
+                <label for="equipo">Equipo / Programa</label>
+                <input type="text" id="equipo" name="equipo" placeholder="ej. Scale, ISP, Capital" />
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SECCIÓN 2: VIDEO ── -->
+          <div class="card-section">
+            <div class="section-label">
+              <span>Configuración del video</span>
+            </div>
+
+            <div class="field full">
+              <label>Tipo de video <span class="req">*</span></label>
+              <div class="tipo-grid" role="group" aria-label="Tipo de video">
+                <button type="button" class="tipo-pill active" data-value="avatar" aria-pressed="true">
+                  <span class="tipo-icon">🎙️</span>
+                  <span class="tipo-title">Avatar explicativo</span>
+                  <span class="tipo-desc">Presentador IA a cámara</span>
+                </button>
+                <button type="button" class="tipo-pill" data-value="animado" aria-pressed="false">
+                  <span class="tipo-icon">✨</span>
+                  <span class="tipo-title">Video animado</span>
+                  <span class="tipo-desc">Motion graphics y animaciones</span>
+                </button>
+                <button type="button" class="tipo-pill" data-value="mixto" aria-pressed="false">
+                  <span class="tipo-icon">🎬</span>
+                  <span class="tipo-title">Mixto</span>
+                  <span class="tipo-desc">Avatar + slides + animaciones</span>
+                </button>
+              </div>
+              <input type="hidden" id="tipo_video" name="tipo_video" value="avatar" />
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="audiencia">Audiencia objetivo <span class="req">*</span></label>
+                <select id="audiencia" name="audiencia">
+                  <option value="">Seleccioná la audiencia</option>
+                  <option value="entrepreneurs">Entrepreneurs (EEs)</option>
+                  <option value="staff">Staff Endeavor</option>
+                  <option value="ambos">Ambos</option>
+                  <option value="inversores">Inversores / Capital</option>
+                  <option value="mentores">Mentores</option>
+                </select>
+                <span class="field-error" id="err-audiencia"></span>
+              </div>
+              <div class="field">
+                <label for="duracion">Duración estimada</label>
+                <select id="duracion" name="duracion">
+                  <option value="1-2min">1–2 minutos (clip / reel)</option>
+                  <option value="3-5min" selected>3–5 minutos (explicativo)</option>
+                  <option value="5min+">+5 minutos (módulo completo)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field full">
+              <label for="conceptos">Conceptos o ideas que querés destacar <span class="req">*</span></label>
+              <textarea
+                id="conceptos"
+                name="conceptos"
+                rows="4"
+                placeholder='ej. "El canal directo reduce el time-to-market un 40%" — mencioná frases clave, datos o ideas que el video debe transmitir'
+              ></textarea>
+              <span class="field-hint">Sé específico: cuanto más detalle, mejor el resultado del agente.</span>
+              <span class="field-error" id="err-conceptos"></span>
+            </div>
+          </div>
+
+          <!-- ── SECCIÓN 3: DOCUMENTO ── -->
+          <div class="card-section">
+            <div class="section-label">
+              <span>Documento fuente</span>
+            </div>
+
+            <div
+              class="upload-zone"
+              id="upload-zone"
+              role="button"
+              tabindex="0"
+              aria-label="Subir archivo"
+            >
+              <input
+                type="file"
+                id="archivo"
+                name="archivo"
+                accept=".pdf,.doc,.docx,.txt"
+                aria-label="Seleccionar archivo"
+              />
+              <div class="upload-content">
+                <div class="upload-icon" aria-hidden="true">📄</div>
+                <p class="upload-title">Arrastrá o hacé clic para subir</p>
+                <p class="upload-sub">PDF, Word, TXT · hasta 20 MB</p>
+              </div>
+              <div class="upload-preview" id="upload-preview" hidden>
+                <span class="upload-file-icon" aria-hidden="true">📎</span>
+                <span id="upload-filename"></span>
+                <button type="button" class="upload-remove" id="upload-remove" aria-label="Quitar archivo">✕</button>
+              </div>
+            </div>
+
+            <div class="divider-or" aria-hidden="true">o pegá un link</div>
+
+            <div class="field full">
+              <label for="documento_url">URL del documento</label>
+              <input
+                type="url"
+                id="documento_url"
+                name="documento_url"
+                placeholder="https://docs.google.com/... · notion.so/... · confluence..."
+              />
+              <span class="field-hint">Google Drive, Notion, Confluence, Dropbox — cualquier link con acceso público o compartido.</span>
+              <span class="field-error" id="err-doc"></span>
+            </div>
+          </div>
+
+          <!-- ── FOOTER DEL FORM ── -->
+          <div class="card-footer">
+            <p class="disclaimer">
+              Al enviar aceptás que un agente de IA de Endeavor procese este documento para generar un borrador de script.
+              Uso sujeto a la <a href="https://oneendeavor.notion.site/Endeavor-AI-Policy-1d6bd9fe4dd680fe929ece53a9850c24" target="_blank" rel="noopener">Política de IA de Endeavor</a>.
+            </p>
+            <button type="submit" class="btn-submit" id="btn-submit">
+              <span class="btn-label">Enviar solicitud</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
+              <span class="btn-spinner" aria-hidden="true" hidden></span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- SUCCESS STATE -->
+      <div class="success-card" id="success-card" hidden>
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <h2 class="success-title">Solicitud enviada</h2>
+        <p class="success-body">
+          Claude está analizando el documento. En los próximos minutos recibirás un email con el borrador del script para que puedas aprobarlo, editarlo o rechazarlo antes de producir el video.
+        </p>
+        <div class="success-id" id="success-id"></div>
+        <button type="button" class="btn-new" onclick="resetForm()">Enviar otra solicitud</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- TOAST -->
+  <div class="toast-wrap" id="toast-wrap" aria-live="polite"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
